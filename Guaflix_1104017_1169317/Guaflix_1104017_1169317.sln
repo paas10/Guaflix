@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaflix_1104017_1169317", "Guaflix_1104017_1169317\Guaflix_1104017_1169317.csproj", "{CD364EF8-7FA9-424F-ACE0-EE7E66DFDF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria de Clases", "Libreria de Clases\Libreria de Clases.csproj", "{21E48014-F103-491B-AE91-25BC6194607E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD364EF8-7FA9-424F-ACE0-EE7E66DFDF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD364EF8-7FA9-424F-ACE0-EE7E66DFDF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD364EF8-7FA9-424F-ACE0-EE7E66DFDF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD364EF8-7FA9-424F-ACE0-EE7E66DFDF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E48014-F103-491B-AE91-25BC6194607E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E48014-F103-491B-AE91-25BC6194607E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E48014-F103-491B-AE91-25BC6194607E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E48014-F103-491B-AE91-25BC6194607E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF194067-34B2-47A1-9B1D-B8B4DA176AC5}
+	EndGlobalSection
+EndGlobal
