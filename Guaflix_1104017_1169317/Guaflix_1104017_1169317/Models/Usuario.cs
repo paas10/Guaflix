@@ -48,23 +48,17 @@ namespace Guaflix_1104017_1169317.Clases
             this.Logeado = false;
         }
 
-
-
-        public int CompareByNombredeUsuario(Usuario usuario)
-        {
-            return Nombre.CompareTo(usuario.Nombre);
-        }
-
-        public int CompareByEdad(Usuario usuario)
-        {
-            return Edad.CompareTo(usuario.Edad);
-        }
-
-        public int CompareByUserName(Usuario usuario)
+        private int CompareByUser(Usuario usuario)
         {
             return Username.CompareTo(usuario.Username);
         }
 
+        private int CompareByPassword(Usuario usuario)
+        {
+            return Edad.CompareTo(usuario.Edad);
+        }
+
+        
         public int CompareTo(object obj)
         {
             int res;
@@ -73,7 +67,12 @@ namespace Guaflix_1104017_1169317.Clases
             {
                 Usuario usuario = obj as Usuario;
 
-                res = CompareByEdad(usuario);
+                res = CompareByUser(usuario);
+                if (res != 0)
+                    return res;
+                else
+                    res = CompareByPassword(usuario);
+                
                 return res;
             }
             catch (Exception ex)

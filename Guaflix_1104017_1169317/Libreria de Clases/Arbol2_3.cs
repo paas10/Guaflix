@@ -26,6 +26,7 @@ namespace Libreria_de_Clases
             this.nElementos = 0;
         }
 
+    
         public void Insertar(T vNuevo)
         {
             this.RaizSecundaria = null;
@@ -47,8 +48,6 @@ namespace Libreria_de_Clases
 
             CorregirPadres(ref Raiz);
         }
-
-
 
         private T Insertar(T vNuevo, ref Nodo2_3<T> nAuxiliar)
         {
@@ -130,7 +129,6 @@ namespace Libreria_de_Clases
 
             return default(T);
         }
-
 
         private T InsertarAca(ref Nodo2_3<T> nAuxiliar, T vNuevo)
         {
@@ -1237,6 +1235,161 @@ namespace Libreria_de_Clases
             return default(T);
         }
 
+
+        public T Buscar(T valor)
+        {
+            return Buscar(Raiz, valor);
+        }
+
+        private T Buscar(Nodo2_3<T> nAuxiliar, T Valor)
+        {
+            if (nAuxiliar == null)
+            {
+                return default(T);
+            }
+            // Si la siguiente condicion se cumple quiere decir que solo hay opción de hijo izquierdo o derecho.
+            else if (nAuxiliar.Elementos[1] == null)
+            {
+                // Se debe dirigir a la izquierda
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                    return Buscar(nAuxiliar.Hijos[0], Valor);
+                // Se debe dirigir a la derecha
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1)
+                    return Buscar(nAuxiliar.Hijos[2], Valor);
+                // Se encontró
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[0];
+            }
+            // Si la siguiente condicion se cumple quiere decir que hay opción hijo izquierdo, derecho o central.
+            else if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
+            {
+                // Se debe dirigir a la izquierda
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                    return Buscar(nAuxiliar.Hijos[0], Valor);
+                // Se debe dirigir al centro
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1 && nAuxiliar.Elementos[1].CompareTo(Valor) == 1)
+                    return Buscar(nAuxiliar.Hijos[1], Valor);
+                // Se debe dirigir a la derecha
+                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == -1)
+                    return Buscar(nAuxiliar.Hijos[2], Valor);
+                // Se encontró en la llave izquierda
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[0];
+                // Se encontró en la llave derecha
+                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[1];
+            }
+
+            return default(T);
+        }
+
+
+        public void Eliminar(ref Nodo2_3<T> nAuxiliar, T vEliminar)
+        {
+            if (nAuxiliar == null)
+                return;
+
+            // Si el valor a eliminar está en una hoja solo lo quito
+            else if (nAuxiliar.EsHoja == true)
+            {
+                if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
+                {
+                    if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 0)
+                    {
+                        nAuxiliar.Elementos[0] = default(T);
+                        nAuxiliar.Elementos[0] = nAuxiliar.Elementos[1];
+                    }
+                    else if (nAuxiliar.Elementos[1].CompareTo(vEliminar) == 0)
+                    {
+                        nAuxiliar.Elementos[1] = default(T);
+                    }
+                }
+                else if (nAuxiliar.Elementos[1] == null)
+                {
+                    if (nAuxiliar.PosicionHijo == "Hijo Izquierdo")
+                    {
+                        if (nAuxiliar.Padre.Hijos[2].Elementos[0] != null && nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                        {
+                            if (nAuxiliar.Padre.Elementos[1] == null)
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                            }
+                            else
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Elementos[1];
+                                nAuxiliar.Padre.Elementos[1] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                            }
+
+                        }
+                        else if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                        {
+
+                        }
+
+
+                    }
+                }
+
+            }
+            // Si la siguiente condicion se cumple quiere decir que solo hay opción de hijo izquierdo o derecho.
+            else if (nAuxiliar.Elementos[1] == null)
+            {
+                // El valor a eliminar es MENOR que la llave padre, se debe dirigir al hijo izquierdo.
+                if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 1)
+                    Eliminar(ref nAuxiliar.Hijos[0], vEliminar);
+                // El valor a eliminar es MAYOR que la llave padre, se debe dirigir al hijo derecho.
+                else if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == -1)
+                    Eliminar(ref nAuxiliar.Hijos[2], vEliminar);
+                // El valor a eliminar está en esa llave
+                else if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 0)
+                {
+
+                }
+
+                // DESDE ACA NO TOQUE NADA
+            }
+            // Si la siguiente condicion se cumple quiere decir que hay opción hijo izquierdo, derecho o central.
+            else if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
+            {
+                // El valor nuevo es MENOR que la llave padre izquierda, se debe dirigir al hijo izquierdo.
+                if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 1)
+                {
+                    determinante = "Hijo Izquierdo";
+                    T valorTemp = Insertar(vEliminar, ref nAuxiliar.Hijos[0]);
+
+                    if (terminado == true)
+                        return;
+
+                    // INSERTAR ACÁ
+                    if (valorTemp != null)
+                        InsertarAca(ref nAuxiliar, valorTemp);
+                }
+                // El valor nuevo es MAYOR que la llave padre izquierda y MENOR que la llave padre derecha, se debe dirigir al hijo central.
+                if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == -1 && nAuxiliar.Elementos[1].CompareTo(vEliminar) == 1)
+                {
+                    determinante = "Hijo Central";
+                    T valorTemp = Insertar(vEliminar, ref nAuxiliar.Hijos[1]);
+
+                    // INSERTAR ACÁ
+                    if (valorTemp != null)
+                        InsertarAca(ref nAuxiliar, valorTemp);
+                }
+                // El valor nuevo es MAYOR que la llave padre derecha, se debe dirigir al hijo derecho.
+                else if (nAuxiliar.Elementos[1].CompareTo(vEliminar) == -1)
+                {
+                    determinante = "Hijo Derecho";
+                    T valorTemp = Insertar(vEliminar, ref nAuxiliar.Hijos[2]);
+
+                    // INSERTAR ACÁ
+                    if (valorTemp != null)
+                        InsertarAca(ref nAuxiliar, valorTemp);
+                }
+            }
+        }
 
 
 

@@ -20,9 +20,15 @@ namespace Guaflix_1104017_1169317.Clases
             }
         }
 
-        public Arbol2_3<Pelicula> ArboldePeliculas;
-        public Arbol2_3<Pelicula> ArboldeSeries;
-        public Arbol2_3<Pelicula> ArboldeDocumentales;
+        public Arbol2_3<Pelicula> ArboldePeliculasPorNombre;
+        public Arbol2_3<Pelicula> ArboldePeliculasPorAño;
+        public Arbol2_3<Pelicula> ArboldePeliculasPorGenero;
+        public Arbol2_3<Pelicula> ArboldeSeriesPorNombre;
+        public Arbol2_3<Pelicula> ArboldeSeriesPorAño;
+        public Arbol2_3<Pelicula> ArboldeSeriesPorGenero;
+        public Arbol2_3<Pelicula> ArboldeDocumentalesPorNombre;
+        public Arbol2_3<Pelicula> ArboldeDocumentalesPorAño;
+        public Arbol2_3<Pelicula> ArboldeDocumentalesPorGenero;
         public Arbol2_3<Usuario> ArboldeUsuarios;
         public Arbol2_3<Pelicula> WatchListUsuario;
         public List<string> ArchivoTexto;
@@ -32,9 +38,15 @@ namespace Guaflix_1104017_1169317.Clases
 
         public DataBase()
         {
-            ArboldePeliculas = new Arbol2_3<Pelicula>();
-            ArboldeSeries = new Arbol2_3<Pelicula>();
-            ArboldeDocumentales = new Arbol2_3<Pelicula>();
+            ArboldePeliculasPorNombre = new Arbol2_3<Pelicula>();
+            ArboldePeliculasPorAño = new Arbol2_3<Pelicula>();
+            ArboldePeliculasPorGenero = new Arbol2_3<Pelicula>();
+            ArboldeSeriesPorNombre = new Arbol2_3<Pelicula>();
+            ArboldeSeriesPorAño = new Arbol2_3<Pelicula>();
+            ArboldeSeriesPorGenero = new Arbol2_3<Pelicula>();
+            ArboldeDocumentalesPorNombre = new Arbol2_3<Pelicula>();
+            ArboldeDocumentalesPorAño = new Arbol2_3<Pelicula>();
+            ArboldeDocumentalesPorGenero = new Arbol2_3<Pelicula>();
             WatchListUsuario = new Arbol2_3<Pelicula>();
 
             ArboldeUsuarios = new Arbol2_3<Usuario>();
