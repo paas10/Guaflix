@@ -68,12 +68,8 @@ namespace Guaflix_1104017_1169317.Clases
                 Usuario usuario = obj as Usuario;
 
                 res = CompareByUser(usuario);
-                if (res != 0)
-                    return res;
-                else
-                    res = CompareByPassword(usuario);
-                
                 return res;
+
             }
             catch (Exception ex)
             {

@@ -1250,21 +1250,29 @@ namespace Libreria_de_Clases
             // Si la siguiente condicion se cumple quiere decir que solo hay opción de hijo izquierdo o derecho.
             else if (nAuxiliar.Elementos[1] == null)
             {
+                // Se encontró
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[0];
+                // Como no se encontró me tengo que ir a los hijos
                 // Se debe dirigir a la izquierda
-                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
                     return Buscar(nAuxiliar.Hijos[0], Valor);
                 // Se debe dirigir a la derecha
                 else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1)
                     return Buscar(nAuxiliar.Hijos[2], Valor);
-                // Se encontró
-                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
-                    return nAuxiliar.Elementos[0];
             }
             // Si la siguiente condicion se cumple quiere decir que hay opción hijo izquierdo, derecho o central.
             else if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
             {
+                // Se encontró en la llave izquierda
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[0];
+                // Se encontró en la llave derecha
+                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == 0)
+                    return nAuxiliar.Elementos[1];
+                // Como no se encontró me tengo que ir a los hijos
                 // Se debe dirigir a la izquierda
-                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
                     return Buscar(nAuxiliar.Hijos[0], Valor);
                 // Se debe dirigir al centro
                 else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1 && nAuxiliar.Elementos[1].CompareTo(Valor) == 1)
@@ -1272,12 +1280,6 @@ namespace Libreria_de_Clases
                 // Se debe dirigir a la derecha
                 else if (nAuxiliar.Elementos[1].CompareTo(Valor) == -1)
                     return Buscar(nAuxiliar.Hijos[2], Valor);
-                // Se encontró en la llave izquierda
-                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
-                    return nAuxiliar.Elementos[0];
-                // Se encontró en la llave derecha
-                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == 0)
-                    return nAuxiliar.Elementos[1];
             }
 
             return default(T);
