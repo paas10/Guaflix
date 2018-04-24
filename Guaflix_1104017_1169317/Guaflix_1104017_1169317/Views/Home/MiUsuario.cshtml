@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Guaflix_1104017_1169317.Clases.Usuario>
+@{
+    ViewBag.Title = "Mi Usuario";
+}
+<body style="background-image: url('/Content/Flash.jpg'); background-size:cover;">
+</body>
+<h2 style="color:white">@ViewBag.Message</h2>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
+        </div>
+
+        <div class="btn-group" style="float:right; margin-right:25px; background-color:transparent; margin-top:15px; color:white">
+            <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
+            </button>
+            <ul class="dropdown-menu" role="menu" style="right:100%;">
+                <li><a href="@Url.Action("MiUsuario", "Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("CerrarSesion", "Home")">Cerrar Seción</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<table class="table" style="color:white; background-color:black; opacity:0.7; border: 1px solid black; border-radius:8px; height:400px;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logeado)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logeado)
+            </td>
+            }
+        </tr>
+    }
+</table>
+@if (ViewBag.Message == "Admin" || ViewBag.Message == "admin")
+{
+    <div>
+        @Html.ActionLink("Cargar Archivo Json", "json", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
+        <br />
+        <br />
+        @Html.ActionLink("Eliminar Peliculas", "EliminarPelis", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
+    </div>
+}

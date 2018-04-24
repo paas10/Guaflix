@@ -4,3 +4,9 @@ C:\Users\Admin\Desktop\ED Projects\Guaflix\Guaflix_1104017_1169317\Libreria de C
 C:\Users\Admin\Desktop\ED Projects\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\ED Projects\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.dll
 C:\Users\Admin\Desktop\ED Projects\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.pdb
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\bin\Debug\Libreria de Clases.dll
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\bin\Debug\Libreria de Clases.pdb
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.csprojResolveAssemblyReference.cache
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.csproj.CoreCompileInputs.cache
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.dll
+C:\Users\josue\Desktop\GitHub\Guaflix\Guaflix_1104017_1169317\Libreria de Clases\obj\Debug\Libreria de Clases.pdb

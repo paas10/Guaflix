@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Menu";
+    ViewBag.Title = "Menu de Admin";
 }
 <body style="background-image: url('/Content/Sala.jpg'); background-size:cover;">
 </body>
@@ -11,24 +11,24 @@
             <a class="navbar-brand" href="@Url.Action("Index","Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
         </div>
 
-        <div align="center" class="btn-group" style="float:right; background-color:transparent; color:white">
+        <div class="btn-group" style="float:right; margin-right:20px; background-color:transparent; margin-top:10px; color:white">
             <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
             </button>
-            <ul class="dropdown-menu" role="menu" style="right:100%;">
+            <ul class="dropdown-menu" role="menu">
                 <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
                 <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div align="center" class="form-group" style="height:350px">
+<div class="form-group" style="height:350px; margin-top:0px;">
     <div style="border:2px solid white; border-radius: 8px; background-color:black; opacity:0.8; color:white; height:230px; width:600px; margin-left:170px; position:absolute; margin-top: 10px;">
         <br />
         <h2 style="color:white" align="center">Bienvenido @ViewBag.Message</h2>
         <h5 style="color:white" align="center">Selecciona Una Opcion:</h5>
         <br />
-        <div align="center" style="margin-top:20px;position:relative;">
+        <div style="margin-top:20px; margin-right: 0px; position:relative;">
             @Html.ActionLink("Ver Mis Peliculas", "MisPeliculas", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
         </div>
     </div>
