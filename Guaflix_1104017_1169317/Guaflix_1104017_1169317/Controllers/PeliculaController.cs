@@ -291,7 +291,8 @@ namespace Guaflix_1104017_1169317.Controllers
                 }
             }
 
-            return View("MiUsuario", "Home");
+            TempData["msg"] = "<script> alert('Los Usuarios han sido Cargados Correctamente');</script>";
+            return RedirectToAction("MiUsuario","Home");
         }
 
 
@@ -328,63 +329,45 @@ namespace Guaflix_1104017_1169317.Controllers
         }
 
         // GET: Pelicula/Delete/5
-        public ActionResult Delete(string URL, string Trailer, string Nombre, string Tipo, string Anio, string Genero)
+        public ActionResult Delete(string Nombre, string Anio)
         {
             List<Pelicula> Lista = new List<Pelicula>();
-            Pelicula Nueva = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
-            Lista.Add(Nueva);
-            return View(Lista);
-        }
+            List<Pelicula> ListaFinal = new List<Pelicula>();
 
-        // POST: Pelicula/Delete/5
-        [HttpPost]
-        public ActionResult Delete(string Nombre, FormCollection collection)
-        {
-            try
+            foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
             {
-                List<Pelicula> PeliculasEliminadas = new List<Pelicula>();
-                foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
-                {
-                    if (item != null)
-                    {
-                        PeliculasEliminadas.Add(item);
-                    }
-                }
-
-                foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
-                {
-                    if (item != null)
-                    {
-                        PeliculasEliminadas.Add(item);
-                    }
-                }
-
-                foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
-                {
-                    if (item != null)
-                    {
-                        PeliculasEliminadas.Add(item);
-                    }
-                }
-
-                foreach (var item in PeliculasEliminadas)
-                {
-                    if (item.Nombre == Nombre)
-                    {
-                        PeliculasEliminadas.Remove(item);
-                    }
-
-                }
-
-
-                return RedirectToAction("MisPeliculas", PeliculasEliminadas);
+                Lista.Add(item);
             }
-            catch
+
+            foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
             {
-                return View();
+                Lista.Add(item);
+            }
+
+            foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+            {
+                Lista.Add(item);
+            }
+
+            if (Nombre == null)
+            {
+                return View(Lista);
+            }
+            else
+            {
+                foreach (var item in Lista)
+                {
+                    if (item.Nombre != Nombre)
+                    {
+                        if (item.AniodeLanzamiento != Anio)
+                        {
+                            ListaFinal.Add(item);
+                        }
+                    }
+                }
+                return View(ListaFinal);
             }
         }
-
        
         // GET: Pelicula/Create
         public ActionResult Create()

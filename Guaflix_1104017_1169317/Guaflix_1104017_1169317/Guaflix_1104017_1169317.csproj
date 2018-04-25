@@ -199,6 +199,7 @@
     <Content Include="Views\Pelicula\json.cshtml" />
     <Content Include="Views\Pelicula\MisPeliculas.cshtml" />
     <Content Include="Views\Pelicula\VerPelicula.cshtml" />
+    <Content Include="Views\Pelicula\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

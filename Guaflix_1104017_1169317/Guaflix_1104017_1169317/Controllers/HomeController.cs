@@ -124,6 +124,8 @@ namespace Guaflix_1104017_1169317.Controllers
 
         public ActionResult MiUsuario()
         {
+
+            var EsAdmin = false;
             //Se crea un nuevo Usuario
             Usuario Nuevo = new Usuario();
             //Se crea una lista temporal de usuarios y una lista de usuarios para poder pasarla posteriormente.
@@ -140,10 +142,28 @@ namespace Guaflix_1104017_1169317.Controllers
                 {
                     Nuevo = item;
                     ViewBag.Message = Nuevo.Nombre;
-                    ListadeUsuarios.Add(Nuevo);
+                    if(item.Nombre == "Administrador" || item.Nombre == "administrador")
+                    {
+                        EsAdmin = true;
+                    }
+                    else
+                    {
+                        EsAdmin = false;
+                    }
+                    ListadeUsuarios.Add(item);
                 }
             }
-            return View(ListadeUsuarios);
+
+
+            if (EsAdmin == false)
+            {
+                return View(ListadeUsuarios);
+            }
+            else
+            {
+                return View(ListaTemporaldeUsuarios);
+            }
+            
         }
 
         public ActionResult CerrarSesion()

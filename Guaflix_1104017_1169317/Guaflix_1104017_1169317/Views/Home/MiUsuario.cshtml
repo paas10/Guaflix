@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Mi Usuario";
 }
+
+@Html.Raw(TempData["msg"])
 <body style="background-image: url('/Content/Flash.jpg'); background-size:cover;">
 </body>
 <h2 style="color:white">@ViewBag.Message</h2>
@@ -69,12 +71,12 @@
         </tr>
     }
 </table>
-@if (ViewBag.Message == "Admin" || ViewBag.Message == "admin")
+@if (ViewBag.Message == "Administrador" || ViewBag.Message == "administrador")
 {
     <div>
         @Html.ActionLink("Cargar Archivo Json", "json", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
         <br />
         <br />
-        @Html.ActionLink("Eliminar Peliculas", "EliminarPelis", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
+        @Html.ActionLink("Eliminar Peliculas", "Delete", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
     </div>
 }
