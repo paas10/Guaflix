@@ -1,0 +1,242 @@
+﻿@model IEnumerable<Guaflix_1104017_1169317.Clases.Pelicula>
+
+@{
+    ViewBag.Title = "Ver Pelicula";
+}
+
+<body style="background-color:black"></body>
+
+@section Content{
+    <link href="@Url.Content("~/Content/PeliculaNew.css")" rel="stylesheet" type="text/css" />
+}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
+        </div>
+
+        <div class="btn-group" style="float:right; margin-right:25px; background-color:transparent; margin-top:15px; color:white">
+            <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
+            </button>
+            <ul class="dropdown-menu" role="menu" style="right:100%;">
+                <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style="background-color:deepskyblue; height:50px; opacity:0.5; border-radius:8px;"></div>
+<br />
+<div style="height:400px;">
+    <div>
+        <p style="float:left; padding-left:10px;">@Html.ActionLink("Regresar a mis Peliculas", "MisPeliculas")</p>
+        <p style="float:right">@Html.ActionLink("Eliminar de Mi WatchList", "Edit", new { /* id=item.PrimaryKey */ })</p>
+        <p style="color:transparent; float:right">.....</p>
+        <p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "Edit", new { /* id=item.PrimaryKey */ })</p>
+    </div>
+    @foreach (var item in Model)
+    {<br />
+        <h2 style="color:white">@Html.DisplayFor(modelItem => item.Nombre)</h2>
+        <div style="padding-left:10px;" class="wrapper">
+            <img src="@Url.Content(item.URL)" style="width:200px; height:300px; border: 1px solid white; border-radius:5px; float:left; margin: 10px 10px 0 0;" />
+           
+            @switch(item.Nombre)
+            {
+                case "Stranger Things":
+                    <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/XWxyRG_tckY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    break;
+                
+                case "Riverdale":
+                    <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/HxtLlByaYTc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    break;
+
+                case "Dark":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/IJ_AZCvCacw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "The Flash":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/Yj0l7iGKh8g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "SuperGirl":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/s9UjhXxt558" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Avngers Ininity War":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/QwievZ1Tx-8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Black Panther":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/fsT5SyBLlIg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "How I Met Your Mother":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/apRiP2h-O5o" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Lo Mejor de Mi":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/uefIQcwabBg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "God´s not Dead":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/bMjo5f9eiX8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Civil-War":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/dKrVegVI0Us" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Anabelle 2":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/FIdzGOMbVss" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Arrow":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/uFdqDMxlx88" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Son Como Niños":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/s9UjhXxt558" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                case "Pacific Rim":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/5guMumPFBag" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "Guadalquivir":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/pAlM8k5TNCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+                
+                 case "Life":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/IBws4yj7W1A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "Ratatouille":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/c3sBBRxDAqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+                
+                 case "Lluvia de Hamburguesas":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/k33j4MGrTbg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "Los Juegos del Hambre-En Llamas":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/MRwlg4ImXZg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "Divergente":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/853LDxEaf2k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "Maze Runner-Prueba de Fuego":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/ixGEHMkm1t8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                 case "BayWatch":
+                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/eyKOgnaf0BU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                     break;
+
+                default:
+                    <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
+                    <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/XWxyRG_tckY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                     </div>
+                break;
+            }
+           
+            <br />
+        </div>
+        <table>
+            <tr><td><h4 style="color:white">Tipo: @Html.DisplayFor(modelItem => item.Tipo)</h4></td></tr>
+            <tr><td><h4 style="color:white">Año: @Html.DisplayFor(modelItem => item.AniodeLanzamiento)</h4></td></tr>
+            <tr><td><h4 style="color:white">Genero: @Html.DisplayFor(modelItem => item.Genero)</h4></td></tr>
+        </table>
+        <br />
+
+
+
+
+    }
+</div>
+<br />
+<div style="float:left; padding-left:50px;">
+    <form style="float:left">
+        <p class="clasificacion">
+            <input id="radio1" name="estrellas" value="5" type="radio">
+            <!--
+            -->
+            <label for="radio1">★</label>
+            <!--
+            -->
+            <input id="radio2" name="estrellas" value="4" type="radio">
+            <!--
+            -->
+            <label for="radio2">★</label>
+            <!--
+            -->
+            <input id="radio3" name="estrellas" value="3" type="radio">
+            <!--
+            -->
+            <label for="radio3">★</label>
+            <!--
+            -->
+            <input id="radio4" name="estrellas" value="2" type="radio">
+            <!--
+            -->
+            <label for="radio4">★</label>
+            <!--
+            -->
+            <input id="radio5" name="estrellas" value="1" type="radio">
+            <!--
+            -->
+            <label for="radio5">★</label>
+            <label id="especial"> :Valorar</label>
+        </p>
+    </form>
+</div>
+
+<div style="background-color:deepskyblue; height:50px; opacity:0.5; border-radius:8px; margin-top:30px;"></div>

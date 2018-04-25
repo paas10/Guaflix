@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Cargar Archivo";
+}
+
+<body style="background-image:url('/Content/black.jpg'); background-size:cover">
+</body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
+        </div>
+
+        <div class="btn-group" style="float:right; margin-right:25px; background-color:transparent; margin-top:15px; color:white">
+            <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
+            </button>
+            <ul class="dropdown-menu" role="menu" style="right:100%;">
+                <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+@Html.Raw(TempData["msg"])
+@using (Html.BeginForm("json", "Pelicula", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary();
+
+    <br />
+    <div align="center" class="row" style="height:375px;">
+        <div align="center" style="border:1px solid white; width:400px; background-color:deepskyblue; opacity:0.6; border-radius:8px; margin-top:50px;" class="col-md-12">
+            <h2 align="center" style="color:white">Subir Archivo</h2>
+            <br />
+            <p style="color:white" align="center">
+                Agrega los usuarios a Traves de un Archivo .json
+            </p>
+            <div align="center" class="form-group">
+                <input type="file" name="file" value="Examinar" class="btn-primary" style="color: transparent" />
+            </div>
+            <div align="center" class="form-group">
+                <button style="color:white" type="submit" class="btn btn-primary">Subir archivo</button>
+            </div>
+        </div>
+    </div>
+}

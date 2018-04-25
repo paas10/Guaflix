@@ -155,6 +155,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GuaflixNew.css" />
+    <Content Include="Content\PeliculaNew.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -193,10 +195,13 @@
     <Content Include="Views\Home\UsuarioDecision.cshtml" />
     <Content Include="Views\Home\MiUsuario.cshtml" />
     <Content Include="Views\Home\UploadFile.cshtml" />
+    <Content Include="Views\Pelicula\BuscarPelicula.cshtml" />
+    <Content Include="Views\Pelicula\json.cshtml" />
+    <Content Include="Views\Pelicula\MisPeliculas.cshtml" />
+    <Content Include="Views\Pelicula\VerPelicula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Pelicula\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

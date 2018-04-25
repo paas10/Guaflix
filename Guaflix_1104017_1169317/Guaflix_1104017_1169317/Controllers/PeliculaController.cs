@@ -17,6 +17,7 @@ namespace Guaflix_1104017_1169317.Controllers
             return View();
         }
 
+        //Se Escribe el Buffer con el Archivo de Texto
         public void imprimirArchivo()
         {
 
@@ -29,7 +30,7 @@ namespace Guaflix_1104017_1169317.Controllers
             escritor.Close();
         }
 
-        // GET: Pelicula
+        //Se Acceden a las Peliculas Almacenadas en el Arbol
         public ActionResult MisPeliculas(string NombreUsuario, List<Pelicula> Lista)
         {
             //Se crean listas temporales de usuarios y peliculas para usarlas despues
@@ -87,6 +88,7 @@ namespace Guaflix_1104017_1169317.Controllers
             }
         }
 
+        //Se va a una Pelicula especifica para ver sus especificaciones
         [ValidateInput(false)]
         public ActionResult VerPelicula(string URL, string Trailer, string Nombre, string Tipo, string Genero, string Anio)
         {
@@ -111,6 +113,7 @@ namespace Guaflix_1104017_1169317.Controllers
             return View(ListadePeliculas);
         }
 
+        //Buscador de Peliculas
         public ActionResult BuscarPelicula(string Tipo, string Search)
         {
             //Se Crea una lista temporal de usuario para evaluar cual esta logeado
@@ -227,6 +230,7 @@ namespace Guaflix_1104017_1169317.Controllers
             return View("MisPeliculas", ListaGeneral);
         }
 
+        //Accion que Carga el .Json de usuarios desde la pestanaña de "Mi Usuario"
         public ActionResult json()
         {
             List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
@@ -289,6 +293,7 @@ namespace Guaflix_1104017_1169317.Controllers
 
             return View("MiUsuario", "Home");
         }
+
 
         public ActionResult EliminarPelis()
         {

@@ -1,0 +1,52 @@
+﻿@model Guaflix_1104017_1169317.Clases.Pelicula
+@{
+    ViewBag.Title = "Buscar Pelicula";
+}
+<body style="background-image: url('/Content/pop.jpg'); background-repeat:no-repeat;">
+</body>
+@Html.Raw(TempData["msg"])
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
+        </div>
+
+        <div class="btn-group" style="float:right; margin-right:25px; background-color:transparent; margin-top:15px; color:white">
+            <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
+            </button>
+            <ul class="dropdown-menu" role="menu" style="right:100%;">
+                <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style=" background-color:black; opacity:0.7; border-radius:8px; border: 1px solid black; height:300px;">
+    <h2 style="color:deepskyblue">Buscar Pelicula</h2>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div id="contenedor"></div>
+            <h4><font color="#FFFFFF">Seleccione una Opcion para Buscar</font></h4>
+            <form method="get" action="@Url.Action("Busqueda", "Pelicula")">
+                <label for="search"><font color="#FFFFFF">Buscar Por:</font></label>
+                <select name="Tipo" id="Tipo">
+                    <option value="Nombre">Nombre</option>
+                    <option value="AniodeLanzamiento">Año de Lanzamiento</option>
+                    <option value="Genero">Genero</option>
+                </select>
+                <input type="text" name="Search" id="Search" />
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+    }
+</div>
+<br />
+<div>
+    @Html.ActionLink("Regresar a mis Peliculas", "MisPeliculas")
+</div>

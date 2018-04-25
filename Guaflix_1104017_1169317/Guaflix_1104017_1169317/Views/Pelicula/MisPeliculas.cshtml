@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Guaflix_1104017_1169317.Clases.Pelicula>
+@{
+    ViewBag.Title = "Mis Peliculas";
+}
+
+@section Content{
+    <link href="@Url.Content("~/Content/GuaflixNew.css")" rel="stylesheet" type="text/css" />
+}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")"><span><img src="~/Content/GuaflixLG.png" height="30" /></span></a>
+        </div>
+
+        <div class="btn-group" style="float:right; margin-right:25px; background-color:transparent; margin-top:15px; color:white">
+            <button type="button" class="btn btn-default dropdown-toggle" style="background-color:transparent; color:deepskyblue; border-color:transparent" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
+            </button>
+            <ul class="dropdown-menu" role="menu" style="right:100%;">
+                <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body style="background-image: url('/Content/Fondillo2.png');">
+</body>
+<div align="center" style="position:relative; height:2300px; background-color:black; opacity:0.9; border-radius:8px;">
+    <h1 style="color:deepskyblue">Nuevas Peliculas</h1>
+    <div style="border: 2px solid black; border-radius:5px; height:400px; width:750px; background-color:black; opacity:0.9">
+        <iframe width="750" height="375" src="@Url.Content("~/Content/Guaflix.mp4")" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <a align="left" href="@Url.Action("BuscarPelicula","Pelicula")">Buscar Pelicula</a>
+        <br />
+    </div>
+    <br />
+    <div align="center" style="padding-left:50px;">
+        @foreach (var item in Model)
+        {
+            <div style="padding-left:10px;" class="wrapper"><a href="@Url.Action("VerPelicula", new { URL = item.URL,Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento})"><img class="img" src="@Url.Content(item.URL)" style="width:200px; height:300px; border: 1px solid white; border-radius:5px; float:left; margin: 10px 10px 0 0;" /></a></div>
+        }
+    </div>
+
+</div>
+<div style="background-image: url('/Content/Guaflix200.png'); border-radius:8px; height:200px;" class="jumbotron"></div>

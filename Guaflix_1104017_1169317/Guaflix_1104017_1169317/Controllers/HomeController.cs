@@ -46,7 +46,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     UserAdmin.Password = collection["Password"];
                     UserAdmin.Nombre = "Administrador";
                     UserAdmin.Logeado = true;
-                    ViewBag.Message = "Admin";
+                    ViewBag.Message = "Administrador";
 
                     DataBase.Instance.ArboldeUsuarios.Insertar(UserAdmin);
                 }
