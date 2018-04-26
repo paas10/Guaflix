@@ -172,7 +172,6 @@ namespace Guaflix_1104017_1169317.Controllers
                 }
             }
 
-
             if (EsAdmin == false)
             {
                 return View(ListadeUsuarios);
@@ -182,6 +181,32 @@ namespace Guaflix_1104017_1169317.Controllers
                 return View(ListaTemporaldeUsuarios);
             }
             
+        }
+
+        public ActionResult MiWatchList()
+        {
+            //Se crea una lista temporal de usuarios y una lista de usuarios para poder pasarla posteriormente.
+            List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
+            //a la lista temporal de usuarios se le asignan los usuarios que posee el arbol.
+            ListaTemporaldeUsuarios = DataBase.Instance.ArboldeUsuarios.ObtenerArbol();
+
+            //Se busca el usuario que esta logeado y es el que se envia a la vista.
+            foreach (var item in ListaTemporaldeUsuarios)
+            {
+                if (item.Logeado == true)
+                {
+                    var Mensaje = item.Nombre + " " + item.Apellido;
+                    ViewBag.Message = Mensaje;
+
+                    if (item.Nombre == "Administrador" || item.Nombre == "administrador")
+                        ViewBag.Message = item.Nombre;
+
+                }
+            }
+
+            List<Pelicula> WatchList = DataBase.Instance.WatchListUsuario.ObtenerArbol();
+
+            return View(WatchList);
         }
 
         public ActionResult CerrarSesion()

@@ -26,17 +26,20 @@
         </div>
     </div>
 </nav>
-<table class="table">
+<table class="table" style="color:white; background-color:black; opacity:0.7; border: 1px solid black; border-radius:8px; height:400px;">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.URL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trailer)
-        </th>
+        @*
+    <th>
+        @Html.DisplayNameFor(model => model.URL)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Trailer)
+    </th>
+        *@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Tipo)
         </th>
@@ -51,12 +54,14 @@
 
 @foreach (var item in Model) {
     <tr>
+            @*
         <td>
             @Html.DisplayFor(modelItem => item.URL)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Trailer)
         </td>
+            *@
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -69,11 +74,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Genero)
         </td>
+        @*
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
+            *@
     </tr>
 }
 

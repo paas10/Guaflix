@@ -20,8 +20,9 @@
                 <span class="glyphicon glyphicon-user"></span> @ViewBag.Message
             </button>
             <ul class="dropdown-menu" role="menu" style="right:100%;">
-                <li><a href="@Url.Action("MiUsuario","Home")"> Mi Cuenta</a></li>
-                <li><a href="@Url.Action("CerrarSesion","Home")">Cerrar Seción</a></li>
+                <li><a href="@Url.Action("MiUsuario", "Home")"> Mi Cuenta</a></li>
+                <li><a href="@Url.Action("MiWatchList", "Home")"> Mi WatchList</a></li>
+                <li><a href="@Url.Action("CerrarSesion", "Home")">Cerrar Seción</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +34,6 @@
         <p style="float:left; padding-left:10px;">@Html.ActionLink("Regresar a mis Peliculas", "MisPeliculas")</p>
         <p style="float:right">@Html.ActionLink("Eliminar de Mi WatchList", "Edit", new { /* id=item.PrimaryKey */ })</p>
         <p style="color:transparent; float:right">.....</p>
-        @*<p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "VerPelicula", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })</p>*@
     </div>
     @foreach (var item in Model)
     {<br />

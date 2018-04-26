@@ -121,7 +121,7 @@ namespace Guaflix_1104017_1169317.Controllers
                 }
             }
 
-            return RedirectToAction("VerPelicula", "PeliculaController", ListaTemporaldePeliculas);
+            return RedirectToAction("MisPeliculas", "Pelicula", ListaTemporaldePeliculas);
         }
 
         //Se va a una Pelicula especifica para ver sus especificaciones
