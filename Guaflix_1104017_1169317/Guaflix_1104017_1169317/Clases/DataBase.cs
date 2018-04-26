@@ -38,18 +38,18 @@ namespace Guaflix_1104017_1169317.Clases
 
         public DataBase()
         {
-            ArboldePeliculasPorNombre = new Arbol2_3<Pelicula>();
-            ArboldePeliculasPorAño = new Arbol2_3<Pelicula>();
-            ArboldePeliculasPorGenero = new Arbol2_3<Pelicula>();
-            ArboldeSeriesPorNombre = new Arbol2_3<Pelicula>();
-            ArboldeSeriesPorAño = new Arbol2_3<Pelicula>();
-            ArboldeSeriesPorGenero = new Arbol2_3<Pelicula>();
-            ArboldeDocumentalesPorNombre = new Arbol2_3<Pelicula>();
-            ArboldeDocumentalesPorAño = new Arbol2_3<Pelicula>();
-            ArboldeDocumentalesPorGenero = new Arbol2_3<Pelicula>();
-            WatchListUsuario = new Arbol2_3<Pelicula>();
+            ArboldePeliculasPorNombre = new Arbol2_3<Pelicula>(Pelicula.CompareByNombre);
+            ArboldePeliculasPorAño = new Arbol2_3<Pelicula>(Pelicula.CompareByAño);
+            ArboldePeliculasPorGenero = new Arbol2_3<Pelicula>(Pelicula.CompareByGenero);
+            ArboldeSeriesPorNombre = new Arbol2_3<Pelicula>(Pelicula.CompareByNombre);
+            ArboldeSeriesPorAño = new Arbol2_3<Pelicula>(Pelicula.CompareByAño);
+            ArboldeSeriesPorGenero = new Arbol2_3<Pelicula>(Pelicula.CompareByGenero);
+            ArboldeDocumentalesPorNombre = new Arbol2_3<Pelicula>(Pelicula.CompareByNombre);
+            ArboldeDocumentalesPorAño = new Arbol2_3<Pelicula>(Pelicula.CompareByAño);
+            ArboldeDocumentalesPorGenero = new Arbol2_3<Pelicula>(Pelicula.CompareByGenero);
+            WatchListUsuario = new Arbol2_3<Pelicula>(Pelicula.CompareByNombre);
 
-            ArboldeUsuarios = new Arbol2_3<Usuario>();
+            ArboldeUsuarios = new Arbol2_3<Usuario>(Usuario.CompareByUser);
 
             ArchivoTexto = new List<string>();
             ListadePrueba = new List<Pelicula>();

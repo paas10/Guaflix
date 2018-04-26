@@ -90,7 +90,44 @@ namespace Guaflix_1104017_1169317.Controllers
 
         //Se va a una Pelicula especifica para ver sus especificaciones
         [ValidateInput(false)]
-        public ActionResult VerPelicula(string URL, string Trailer, string Nombre, string Tipo, string Genero, string Anio)
+        public ActionResult AgregarWatchlist(string URL, string Trailer, string Nombre, string Tipo, string Genero, int Anio)
+        {
+            Pelicula nuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
+
+            DataBase.Instance.WatchListUsuario.Insertar(nuevaPelicula);
+
+            List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
+
+            foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            return RedirectToAction("VerPelicula", "PeliculaController", ListaTemporaldePeliculas);
+        }
+
+        //Se va a una Pelicula especifica para ver sus especificaciones
+        [ValidateInput(false)]
+        public ActionResult VerPelicula(string URL, string Trailer, string Nombre, string Tipo, string Genero, int Anio)
         {
             //Se Crea una lista temporal de usuario para evaluar cual esta logeado
             List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
@@ -159,7 +196,7 @@ namespace Guaflix_1104017_1169317.Controllers
             {
                 foreach (var item in ListaTemporaldePeliculas)
                 {
-                    if (item.AniodeLanzamiento == Search)
+                    if (item.AniodeLanzamiento == int.Parse(Search))
                     {
                         ListaGeneral.Add(item);
                     }
@@ -167,7 +204,7 @@ namespace Guaflix_1104017_1169317.Controllers
 
                 foreach (var item in ListaTemporaldeSeries)
                 {
-                    if (item.AniodeLanzamiento == Search)
+                    if (item.AniodeLanzamiento == int.Parse(Search))
                     {
                         ListaGeneral.Add(item);
                     }
@@ -175,7 +212,7 @@ namespace Guaflix_1104017_1169317.Controllers
 
                 foreach (var item in ListaTemporaldeDocumentales)
                 {
-                    if (item.AniodeLanzamiento == Search)
+                    if (item.AniodeLanzamiento == int.Parse(Search))
                     {
                         ListaGeneral.Add(item);
                     }
@@ -329,7 +366,7 @@ namespace Guaflix_1104017_1169317.Controllers
         }
 
         // GET: Pelicula/Delete/5
-        public ActionResult Delete(string Nombre, string Anio)
+        public ActionResult Delete(string Nombre, int Anio)
         {
             List<Pelicula> Lista = new List<Pelicula>();
             List<Pelicula> ListaFinal = new List<Pelicula>();

@@ -21,12 +21,13 @@ namespace Guaflix_1104017_1169317.Clases
         public string Tipo { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El Año de Lazamiento de La Pelicula es Requerido")]
-        public string AniodeLanzamiento { get; set; }
+        public int AniodeLanzamiento { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El Genero de la Pelicula es Requerido")]
         public string Genero { get; set; }
 
-        public Pelicula(string URL, string Trailer, string Nombre, string Tipo, string AniodeLanzamiento, string Genero)
+
+        public Pelicula(string URL, string Trailer, string Nombre, string Tipo, int AniodeLanzamiento, string Genero)
         {
             this.URL = URL;
             this.Trailer = Trailer;
@@ -36,19 +37,43 @@ namespace Guaflix_1104017_1169317.Clases
             this.Genero = Genero;
         }
 
-        public int CompareByNombredePelicula(Pelicula pelicula)
+        public static int CompareByNombre(Pelicula peli1, Pelicula peli2)
         {
-            return Nombre.CompareTo(pelicula.Nombre);
+            int result = peli1.Nombre.CompareTo(peli2.Nombre);
+            if (result == 0)
+            {
+                result = peli1.AniodeLanzamiento.CompareTo(peli2.AniodeLanzamiento);
+                if (result == 0)
+                    result = peli1.Genero.CompareTo(peli2.Genero);
+            }
+
+            return result;
         }
 
-        public int CompareByAño(Pelicula pelicula)
+        public static int CompareByAño(Pelicula peli1, Pelicula peli2)
         {
-            return AniodeLanzamiento.CompareTo(pelicula.AniodeLanzamiento);
+            int result = peli1.AniodeLanzamiento.CompareTo(peli2.AniodeLanzamiento);
+            if (result == 0)
+            {
+                result = peli1.Nombre.CompareTo(peli2.Nombre);
+                if (result == 0)
+                    result = peli1.Genero.CompareTo(peli2.Genero);
+            }
+
+            return result;
         }
 
-        public int CompareByGenero(Pelicula pelicula)
+        public static int CompareByGenero(Pelicula peli1, Pelicula peli2)
         {
-            return Genero.CompareTo(pelicula.Genero);
+            int result = peli1.Genero.CompareTo(peli2.Genero);
+            if (result == 0)
+            {
+                result = peli1.Nombre.CompareTo(peli2.Nombre);
+                if (result == 0)
+                    result = peli1.AniodeLanzamiento.CompareTo(peli2.AniodeLanzamiento);
+            }
+
+            return result;
         }
 
         public int CompareTo(object obj)
@@ -59,12 +84,12 @@ namespace Guaflix_1104017_1169317.Clases
             {
                 Pelicula pelicula = obj as Pelicula;
 
-                res = CompareByNombredePelicula(pelicula);
+                res = CompareByNombre(this, pelicula);
 
                 if (res != 0)
                     return res;
                 else
-                    res = CompareByAño(pelicula);
+                    res = CompareByAño(this, pelicula);
 
                 return res;
             }

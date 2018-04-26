@@ -48,14 +48,11 @@ namespace Guaflix_1104017_1169317.Clases
             this.Logeado = false;
         }
 
-        private int CompareByUser(Usuario usuario)
+        public static int CompareByUser(Usuario usuario1, Usuario usuario2)
         {
-            return Username.CompareTo(usuario.Username);
-        }
+            int result = usuario1.Username.CompareTo(usuario2.Username);
 
-        private int CompareByPassword(Usuario usuario)
-        {
-            return Edad.CompareTo(usuario.Edad);
+            return result;
         }
 
         
@@ -67,7 +64,7 @@ namespace Guaflix_1104017_1169317.Clases
             {
                 Usuario usuario = obj as Usuario;
 
-                res = CompareByUser(usuario);
+                res = CompareByUser(this, usuario);
                 return res;
 
             }

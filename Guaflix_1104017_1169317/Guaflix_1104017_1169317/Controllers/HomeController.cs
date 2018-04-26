@@ -34,9 +34,26 @@ namespace Guaflix_1104017_1169317.Controllers
             {
                 if (usuarioEncontrado != null)
                 {
-                    var Mensaje = usuarioEncontrado.Nombre +" "+ usuarioEncontrado.Apellido;
-                    ViewBag.Message = Mensaje;
-                    UserLogin.Logeado = true;
+                    if (usuarioEncontrado.Password == collection["Password"])
+                    {
+                        var Mensaje = usuarioEncontrado.Nombre + " " + usuarioEncontrado.Apellido;
+                        ViewBag.Message = Mensaje;
+                        foreach (var item in DataBase.Instance.ArboldeUsuarios.ObtenerArbol())
+                        {
+                            if (item.Username == usuarioEncontrado.Username)
+                            {
+                                item.Logeado = true;
+                            }
+                        }
+                 
+                    }
+                    else
+                    {
+                        //Si no es correcto se envia un mensaje de Error
+                        TempData["msg"] = "<script> alert('El Usuario o La Contraseña es Incorrecta');</script>";
+                        return View();
+                    }
+                  
                 }
 
                 else
@@ -140,10 +157,11 @@ namespace Guaflix_1104017_1169317.Controllers
             {
                 if (item.Logeado == true)
                 {
-                    Nuevo = item;
-                    ViewBag.Message = Nuevo.Nombre;
+                    var Mensaje = item.Nombre + " " + item.Apellido;
+                    ViewBag.Message = Mensaje;
                     if(item.Nombre == "Administrador" || item.Nombre == "administrador")
                     {
+                        ViewBag.Message = item.Nombre;
                         EsAdmin = true;
                     }
                     else
@@ -229,20 +247,20 @@ namespace Guaflix_1104017_1169317.Controllers
                 if (item.Tipo == "Pelicula")
                 {
                     DataBase.Instance.ArboldePeliculasPorNombre.Insertar(item);
-                    DataBase.Instance.ArboldePeliculasPorGenero.Insertar(item);
                     DataBase.Instance.ArboldePeliculasPorAño.Insertar(item);
+                    //DataBase.Instance.ArboldePeliculasPorGenero.Insertar(item);
                 }
                 else if (item.Tipo == "Serie")
                 {
                     DataBase.Instance.ArboldeSeriesPorNombre.Insertar(item);
                     DataBase.Instance.ArboldeSeriesPorGenero.Insertar(item);
-                    DataBase.Instance.ArboldeSeriesPorAño.Insertar(item);
+                    //DataBase.Instance.ArboldeSeriesPorAño.Insertar(item);
                 }
                 else if (item.Tipo == "Documental")
                 {
                     DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(item);
                     DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(item);
-                    DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(item);
+                    //DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(item);
                 }
             }
 

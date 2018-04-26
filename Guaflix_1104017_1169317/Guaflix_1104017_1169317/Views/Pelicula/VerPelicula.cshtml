@@ -33,22 +33,25 @@
         <p style="float:left; padding-left:10px;">@Html.ActionLink("Regresar a mis Peliculas", "MisPeliculas")</p>
         <p style="float:right">@Html.ActionLink("Eliminar de Mi WatchList", "Edit", new { /* id=item.PrimaryKey */ })</p>
         <p style="color:transparent; float:right">.....</p>
-        <p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "Edit", new { /* id=item.PrimaryKey */ })</p>
+        @*<p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "VerPelicula", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })</p>*@
     </div>
     @foreach (var item in Model)
     {<br />
         <h2 style="color:white">@Html.DisplayFor(modelItem => item.Nombre)</h2>
         <div style="padding-left:10px;" class="wrapper">
+            <p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "VerPelicula", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })</p>
+            <br />
+            <br />
             <img src="@Url.Content(item.URL)" style="width:200px; height:300px; border: 1px solid white; border-radius:5px; float:left; margin: 10px 10px 0 0;" />
            
-            @switch(item.Nombre)
+            @switch (item.Nombre)
             {
                 case "Stranger Things":
                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
                     <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/XWxyRG_tckY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                     break;
-                
+
                 case "Riverdale":
                     <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
                     <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/HxtLlByaYTc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -59,7 +62,7 @@
                      <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">
                     <iframe style="padding-top:5px;" width="560" height="315" src="https://www.youtube.com/embed/IJ_AZCvCacw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
-                     break;
+                    break;
 
                 case "The Flash":
                      <div align="center" style="float:right; margin-top:0px; align-content:center; background-color:lightskyblue; opacity:0.6; border-radius: 5px; width:570px; height:325px;">

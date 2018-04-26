@@ -20,12 +20,13 @@ namespace Libreria_de_Clases
 
         private List<T> Noditos = new List<T>();
 
-        public Arbol2_3()
+        public Comparison<T> comparador;
+        public Arbol2_3(Comparison<T> comparador)
         {
+            this.comparador = comparador;
             this.Raiz = null;
             this.nElementos = 0;
         }
-
     
         public void Insertar(T vNuevo)
         {
@@ -66,7 +67,8 @@ namespace Libreria_de_Clases
             else if (nAuxiliar.Elementos[1] == null)
             {
                 // El valor nuevo es MENOR que la llave padre, se debe dirigir al hijo izquierdo.
-                if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
+                if (comparador(nAuxiliar.Elementos[0], vNuevo) == 1)
+                //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
                 {
                     determinante = "Hijo Izquierdo";
                     T valorTemp = Insertar(vNuevo, ref nAuxiliar.Hijos[0]);
@@ -77,7 +79,8 @@ namespace Libreria_de_Clases
 
                 }
                 // El valor nuevo es MAYOR que la llave padre, se debe dirigir al hijo derecho.
-                else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
+                if (comparador(nAuxiliar.Elementos[0], vNuevo) == -1)
+                //else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
                 {
                     determinante = "Hijo Derecho";
                     T valorTemp = Insertar(vNuevo, ref nAuxiliar.Hijos[2]);
@@ -93,7 +96,8 @@ namespace Libreria_de_Clases
             else if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
             {
                 // El valor nuevo es MENOR que la llave padre izquierda, se debe dirigir al hijo izquierdo.
-                if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
+                if (comparador(nAuxiliar.Elementos[0], vNuevo) == 1)
+                //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
                 {
                     determinante = "Hijo Izquierdo";
                     T valorTemp = Insertar(vNuevo, ref nAuxiliar.Hijos[0]);
@@ -106,7 +110,8 @@ namespace Libreria_de_Clases
                         InsertarAca(ref nAuxiliar, valorTemp);
                 }
                 // El valor nuevo es MAYOR que la llave padre izquierda y MENOR que la llave padre derecha, se debe dirigir al hijo central.
-                if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1 && nAuxiliar.Elementos[1].CompareTo(vNuevo) == 1)
+                else if (comparador(nAuxiliar.Elementos[0], vNuevo) == -1 && comparador(nAuxiliar.Elementos[1], vNuevo) == 1)
+                //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1 && nAuxiliar.Elementos[1].CompareTo(vNuevo) == 1)
                 {
                     determinante = "Hijo Central";
                     T valorTemp = Insertar(vNuevo, ref nAuxiliar.Hijos[1]);
@@ -116,7 +121,8 @@ namespace Libreria_de_Clases
                         InsertarAca(ref nAuxiliar, valorTemp);
                 }
                 // El valor nuevo es MAYOR que la llave padre derecha, se debe dirigir al hijo derecho.
-                else if (nAuxiliar.Elementos[1].CompareTo(vNuevo) == -1)
+                else if (comparador(nAuxiliar.Elementos[1], vNuevo) == -1)
+                //else if (nAuxiliar.Elementos[1].CompareTo(vNuevo) == -1)
                 {
                     determinante = "Hijo Derecho";
                     T valorTemp = Insertar(vNuevo, ref nAuxiliar.Hijos[2]);
@@ -145,11 +151,13 @@ namespace Libreria_de_Clases
                     }
                     else
                     {
-                        if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
+                        if (comparador(nAuxiliar.Elementos[0], vNuevo) == -1)
+                        //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
                         {
                             nAuxiliar.Elementos[1] = vNuevo;
                         }
-                        else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
+                        else if (comparador(nAuxiliar.Elementos[0], vNuevo) == 1)
+                        //else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
                         {
                             T valorAuxiliar = nAuxiliar.Elementos[0];
                             nAuxiliar.Elementos[1] = valorAuxiliar;
@@ -159,11 +167,13 @@ namespace Libreria_de_Clases
 
                 }
 
-                if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
+                if (comparador(nAuxiliar.Elementos[0], vNuevo) == -1)
+                //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1)
                 {
                     nAuxiliar.Elementos[1] = vNuevo;
                 }
-                else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
+                else if (comparador(nAuxiliar.Elementos[0], vNuevo) == 1)
+                //else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
                 {
                     T valorAuxiliar = nAuxiliar.Elementos[0];
                     nAuxiliar.Elementos[1] = valorAuxiliar;
@@ -174,7 +184,8 @@ namespace Libreria_de_Clases
             // Por deduccion, si el elemento derecho no está vacío... el nodo está lleno.
             else
             {
-                if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
+                if (comparador(nAuxiliar.Elementos[0], vNuevo) == 1)
+                //if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == 1)
                 {
                     // subir nAuxiliar.Elementos[0]
 
@@ -524,7 +535,8 @@ namespace Libreria_de_Clases
 
                     }
                 }
-                else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1 && nAuxiliar.Elementos[1].CompareTo(vNuevo) == 1)
+                else if (comparador(nAuxiliar.Elementos[0], vNuevo) == -1 && comparador(nAuxiliar.Elementos[1], vNuevo) == 1)
+                //else if (nAuxiliar.Elementos[0].CompareTo(vNuevo) == -1 && nAuxiliar.Elementos[1].CompareTo(vNuevo) == 1)
                 {
                     // Subir vNuevo
 
@@ -1619,5 +1631,31 @@ namespace Libreria_de_Clases
             }
 
         }
+
+        /*
+        private void AsignarCodPK(ref Nodo2_3<T> Aux, int cod)
+        {
+            if (Aux.EsHoja == false)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    if (Aux.Hijos[i] != null)
+                    {
+                        Aux.Elementos[i].
+                        CorregirPadres(ref Aux.Hijos[i]);
+                    }
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Aux.Hijos[i] != null)
+                    {
+                        Aux.Elementos[]
+                        CorregirPadres(ref Aux.Hijos[i]);
+                    }
+                }
+            }
+        }
+        */
     }
 }
