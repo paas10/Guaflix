@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Libreria_de_Clases;
 
 namespace Guaflix_1104017_1169317.Controllers
 {
@@ -17,17 +18,83 @@ namespace Guaflix_1104017_1169317.Controllers
             return View();
         }
 
-        //Se Escribe el Buffer con el Archivo de Texto
-        public void imprimirArchivo()
+        /// <summary>
+        /// Metodo que imprime cualquier arbol en disco
+        /// </summary>
+        /// <param name="nArbol">Arbol a imprimir</param>
+        /// <param name="URL">Direccion con nombre del archivo</param>
+        public static void ImprimirArboles(int nArbol, string URL)
         {
+            //Se crea un Jugador Momentaneo para pasar los datos (Carga del archivo)
+            List<string> ListaEnDisco = new List<string>();
 
-            StreamWriter escritor = new StreamWriter(@"C:\Users\Admin\Desktop\Bitacora.txt");
-
-            foreach (var linea in DataBase.Instance.ArchivoTexto)
+            if (nArbol < 11)
             {
-                escritor.WriteLine(linea);
+                StreamWriter escritor = new StreamWriter(URL);
+
+                switch (nArbol)
+                {
+                    case 1: ListaEnDisco = DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbolEnDisco(); break;
+                    case 2: ListaEnDisco = DataBase.Instance.ArboldePeliculasPorAño.ObtenerArbolEnDisco(); break;
+                    case 3: ListaEnDisco = DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbolEnDisco(); break;
+                    case 4: ListaEnDisco = DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbolEnDisco(); break;
+                    case 5: ListaEnDisco = DataBase.Instance.ArboldeSeriesPorAño.ObtenerArbolEnDisco(); break;
+                    case 6: ListaEnDisco = DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbolEnDisco(); break;
+                    case 7: ListaEnDisco = DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbolEnDisco(); break;
+                    case 8: ListaEnDisco = DataBase.Instance.ArboldeDocumentalesPorAño.ObtenerArbolEnDisco(); break;
+                    case 9: ListaEnDisco = DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbolEnDisco(); break;
+                    case 10: ListaEnDisco = DataBase.Instance.ArboldeUsuarios.ObtenerArbolEnDisco(); break;
+                    case 11:
+                        List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
+                        ListaTemporaldeUsuarios = DataBase.Instance.ArboldeUsuarios.ObtenerArbol();
+
+                        foreach (var item in ListaTemporaldeUsuarios)
+                        {
+                            if (item.Logeado == true)
+                            {
+                                escritor = new StreamWriter(@"C:\" + item.Username + ".watchList");
+                            }
+                        }
+
+                        ListaEnDisco = DataBase.Instance.WatchListUsuario.ObtenerArbolEnDisco();
+                        break;
+                }
+
+                foreach (var linea in ListaEnDisco)
+                {
+                    escritor.WriteLine(linea);
+                }
+
+                escritor.Close();
+                escritor.Dispose();
             }
-            escritor.Close();
+            else
+            {
+                string direccion = "";
+                List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
+                ListaTemporaldeUsuarios = DataBase.Instance.ArboldeUsuarios.ObtenerArbol();
+
+                foreach (var item in ListaTemporaldeUsuarios)
+                {
+                    if (item.Logeado == true)
+                    {
+                        direccion = @"C:\" + item.Username + ".watchList";
+                    }
+                }
+
+                StreamWriter escritor = new StreamWriter(direccion);
+
+                ListaEnDisco = DataBase.Instance.WatchListUsuario.ObtenerArbolEnDisco();
+
+                foreach (var linea in ListaEnDisco)
+                {
+                    escritor.WriteLine(linea);
+                }
+
+                escritor.Close();
+                escritor.Dispose();
+            }
+            
         }
 
         //Se Acceden a las Peliculas Almacenadas en el Arbol
@@ -94,6 +161,7 @@ namespace Guaflix_1104017_1169317.Controllers
             Pelicula nuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
 
             DataBase.Instance.WatchListUsuario.Insertar(nuevaPelicula);
+            ImprimirArboles(11, @"C:\watchlist");
 
             List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
 
@@ -130,6 +198,7 @@ namespace Guaflix_1104017_1169317.Controllers
             Pelicula nuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
 
             DataBase.Instance.WatchListUsuario.Eliminar(nuevaPelicula);
+            ImprimirArboles(11, @"C:\watchlist");
 
             List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
 
@@ -417,6 +486,10 @@ namespace Guaflix_1104017_1169317.Controllers
                             }
                         }
                     }
+
+                    ImprimirArboles(1, @"C:\Name.movietree");
+                    ImprimirArboles(2, @"C:\year.movietree");
+                    ImprimirArboles(3, @"C:\gender.movietree");
                 }
                 else if (Tipo == "Documental")
                 {
@@ -430,6 +503,10 @@ namespace Guaflix_1104017_1169317.Controllers
                             }
                         }
                     }
+
+                    ImprimirArboles(7, @"C:\Name.documentarytree");
+                    ImprimirArboles(8, @"C:\year.documentarytree");
+                    ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
                 else if (Tipo == "Serie")
                 {
@@ -444,6 +521,10 @@ namespace Guaflix_1104017_1169317.Controllers
                         }
 
                     }
+
+                    ImprimirArboles(4, @"C:\name.showtree");
+                    ImprimirArboles(5, @"C:\year.showtree");
+                    ImprimirArboles(6, @"C:\gender.showtree");
                 }
 
                 Pelicula NuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
@@ -453,18 +534,27 @@ namespace Guaflix_1104017_1169317.Controllers
                      DataBase.Instance.ArboldePeliculasPorNombre.Eliminar(NuevaPelicula);
                      //DataBase.Instance.ArboldePeliculasPorGenero.Eliminar(NuevaPelicula);
                      DataBase.Instance.ArboldePeliculasPorAño.Eliminar(NuevaPelicula);
+                    ImprimirArboles(1, @"C:\Name.movietree");
+                    ImprimirArboles(2, @"C:\year.movietree");
+                    ImprimirArboles(3, @"C:\gender.movietree");
                 }
                 else if (NuevaPelicula.Tipo == "Documental")
                 {
                      DataBase.Instance.ArboldeDocumentalesPorNombre.Eliminar(NuevaPelicula);
                      //DataBase.Instance.ArboldeDocumentalesPorGenero.Eliminar(NuevaPelicula);
                      DataBase.Instance.ArboldeDocumentalesPorAño.Eliminar(NuevaPelicula);
+                    ImprimirArboles(7, @"C:\Name.documentarytree");
+                    ImprimirArboles(8, @"C:\year.documentarytree");
+                    ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
                 else if (NuevaPelicula.Tipo == "Serie")
                 {
                     DataBase.Instance.ArboldeSeriesPorNombre.Eliminar(NuevaPelicula);
                     //DataBase.Instance.ArboldeSeriesPorGenero.Eliminar(NuevaPelicula);
                     DataBase.Instance.ArboldeSeriesPorAño.Eliminar(NuevaPelicula);
+                    ImprimirArboles(4, @"C:\name.showtree");
+                    ImprimirArboles(5, @"C:\year.showtree");
+                    ImprimirArboles(6, @"C:\gender.showtree");
                 }
 
 
@@ -516,20 +606,29 @@ namespace Guaflix_1104017_1169317.Controllers
                 if(NuevaPelicula.Tipo == "Pelicula")
                 {
                     DataBase.Instance.ArboldePeliculasPorNombre.Insertar(NuevaPelicula);
-                    DataBase.Instance.ArboldePeliculasPorGenero.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldePeliculasPorAño.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldePeliculasPorGenero.Insertar(NuevaPelicula);
+                    ImprimirArboles(1, @"C:\Name.movietree");
+                    ImprimirArboles(2, @"C:\year.movietree");
+                    ImprimirArboles(3, @"C:\gender.movietree");
                 }
                 else if(NuevaPelicula.Tipo == "Documental")
                 {
                     DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(NuevaPelicula);
-                    DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(NuevaPelicula);
+                    ImprimirArboles(7, @"C:\Name.documentarytree");
+                    ImprimirArboles(8, @"C:\year.documentarytree");
+                    ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
                 else if(NuevaPelicula.Tipo == "Serie")
                 {
                     DataBase.Instance.ArboldeSeriesPorNombre.Insertar(NuevaPelicula);
-                    DataBase.Instance.ArboldeSeriesPorGenero.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldeSeriesPorAño.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorGenero.Insertar(NuevaPelicula);
+                    ImprimirArboles(4, @"C:\name.showtree");
+                    ImprimirArboles(5, @"C:\year.showtree");
+                    ImprimirArboles(6, @"C:\gender.showtree");
                 }
 
 

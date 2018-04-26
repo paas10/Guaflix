@@ -1555,6 +1555,48 @@ namespace Libreria_de_Clases
             }
         }
 
+        public List<string> ObtenerArbolEnDisco()
+        {
+            string camino = "";
+            List<string> Elemetnos = new List<string>();
+            InOrderEnDisco(Raiz, ref Elemetnos, camino);
+
+            return Elemetnos;
+        }
+
+        private void InOrderEnDisco(Nodo2_3<T> Aux, ref List<string> Elements, string camino)
+        {
+            if (Aux != null)
+            {
+                if (Aux.Hijos[0] != null)
+                {
+                    camino += "0->";
+                    InOrderEnDisco(Aux.Hijos[0], ref Elements, camino);
+                }
+                    
+
+                if (Aux.Elementos[0] != null)
+                    Elements.Add(Aux.Elementos[0].ToString() + "|" + camino + "X|" + "0");
+
+                if (Aux.Hijos[1] != null)
+                {
+                    camino += "1->";
+                    InOrderEnDisco(Aux.Hijos[1], ref Elements, camino);
+                }
+
+                if (Aux.Elementos[1] != null)
+                    Elements.Add(Aux.Elementos[1].ToString() + "|" + camino + "X|" + "1");
+
+                if (Aux.Hijos[2] != null)
+                {
+                    camino += "0->";
+                    InOrderEnDisco(Aux.Hijos[2], ref Elements, camino);
+                }
+            }
+        }
+
+
+
         private void ContarLLaves(Nodo2_3<T> Aux, ref int Elements)
         {
             if (Aux != null)

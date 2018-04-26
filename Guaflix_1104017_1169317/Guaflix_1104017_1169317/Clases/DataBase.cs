@@ -31,7 +31,6 @@ namespace Guaflix_1104017_1169317.Clases
         public Arbol2_3<Pelicula> ArboldeDocumentalesPorGenero;
         public Arbol2_3<Usuario> ArboldeUsuarios;
         public Arbol2_3<Pelicula> WatchListUsuario;
-        public List<string> ArchivoTexto;
 
         public List<Pelicula> ListadePrueba;
         public List<Usuario> ListadePruebaUser;
@@ -51,7 +50,6 @@ namespace Guaflix_1104017_1169317.Clases
 
             ArboldeUsuarios = new Arbol2_3<Usuario>(Usuario.CompareByUser);
 
-            ArchivoTexto = new List<string>();
             ListadePrueba = new List<Pelicula>();
             ListadePruebaUser = new List<Usuario>();
         }

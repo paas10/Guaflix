@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Guaflix_1104017_1169317.Clases;
+using Guaflix_1104017_1169317.Controllers;
 using Libreria_de_Clases;
 using Newtonsoft.Json;
 
@@ -98,6 +99,7 @@ namespace Guaflix_1104017_1169317.Controllers
                 Nuevo.Logeado = false;
 
                 DataBase.Instance.ArboldeUsuarios.Insertar(Nuevo);
+                PeliculaController.ImprimirArboles(10, @"C:\users.tree");
                 TempData["msg"] = "<script> alert('Usuario ingresado con éxito');</script>";
             }
             return View();
@@ -151,6 +153,7 @@ namespace Guaflix_1104017_1169317.Controllers
 
             //a la lista temporal de usuarios se le asignan los usuarios que posee el arbol.
             ListaTemporaldeUsuarios = DataBase.Instance.ArboldeUsuarios.ObtenerArbol();
+            PeliculaController.ImprimirArboles(10, @"C:\users.tree");
 
             //Se busca el usuario que esta logeado y es el que se envia a la vista.
             foreach (var item in ListaTemporaldeUsuarios)
@@ -205,6 +208,7 @@ namespace Guaflix_1104017_1169317.Controllers
             }
 
             List<Pelicula> WatchList = DataBase.Instance.WatchListUsuario.ObtenerArbol();
+            PeliculaController.ImprimirArboles(11, @"C:\watchlist");
 
             return View(WatchList);
         }
@@ -294,18 +298,27 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldePeliculasPorNombre.Insertar(item);
                     DataBase.Instance.ArboldePeliculasPorAño.Insertar(item);
                     //DataBase.Instance.ArboldePeliculasPorGenero.Insertar(item);
+                    PeliculaController.ImprimirArboles(1, @"C:\Name.movietree");
+                    PeliculaController.ImprimirArboles(2, @"C:\year.movietree");
+                    PeliculaController.ImprimirArboles(3, @"C:\gender.movietree");
                 }
                 else if (item.Tipo == "Serie")
                 {
                     DataBase.Instance.ArboldeSeriesPorNombre.Insertar(item);
                     DataBase.Instance.ArboldeSeriesPorGenero.Insertar(item);
                     //DataBase.Instance.ArboldeSeriesPorAño.Insertar(item);
+                    PeliculaController.ImprimirArboles(4, @"C:\name.showtree");
+                    PeliculaController.ImprimirArboles(5, @"C:\year.showtree");
+                    PeliculaController.ImprimirArboles(6, @"C:\gender.showtree");
                 }
                 else if (item.Tipo == "Documental")
                 {
                     DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(item);
                     DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(item);
                     //DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(item);
+                    PeliculaController.ImprimirArboles(7, @"C:\Name.documentarytree");
+                    PeliculaController.ImprimirArboles(8, @"C:\year.documentarytree");
+                    PeliculaController.ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
             }
 

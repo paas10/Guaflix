@@ -37,6 +37,11 @@ namespace Guaflix_1104017_1169317.Clases
             this.Genero = Genero;
         }
 
+        public override string ToString()
+        {
+            return $"{Nombre}|{Tipo}|{AniodeLanzamiento}|{Genero}";
+        }
+
         public static int CompareByNombre(Pelicula peli1, Pelicula peli2)
         {
             int result = peli1.Nombre.CompareTo(peli2.Nombre);

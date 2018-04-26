@@ -37,7 +37,6 @@ namespace Guaflix_1104017_1169317.Clases
             this.Logeado = true;
         }
 
-
         public Usuario()
         {
             this.Nombre = null;
@@ -47,6 +46,12 @@ namespace Guaflix_1104017_1169317.Clases
             this.Password = null;
             this.Logeado = false;
         }
+
+        public override string ToString()
+        {
+            return $"{Nombre}|{Apellido}|{Edad}|{Username}|{Password}";
+        }
+
 
         public static int CompareByUser(Usuario usuario1, Usuario usuario2)
         {
