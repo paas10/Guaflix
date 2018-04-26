@@ -125,6 +125,42 @@ namespace Guaflix_1104017_1169317.Controllers
         }
 
         //Se va a una Pelicula especifica para ver sus especificaciones
+        public ActionResult EliminarWatchlist(string URL, string Trailer, string Nombre, string Tipo, string Genero, int Anio)
+        {
+            Pelicula nuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
+
+            DataBase.Instance.WatchListUsuario.Eliminar(nuevaPelicula);
+
+            List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
+
+            foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
+            {
+                if (item != null)
+                {
+                    ListaTemporaldePeliculas.Add(item);
+                }
+            }
+
+            return RedirectToAction("MisPeliculas", "Pelicula", ListaTemporaldePeliculas);
+        }
+
+        //Se va a una Pelicula especifica para ver sus especificaciones
         [ValidateInput(false)]
         public ActionResult VerPelicula(string URL, string Trailer, string Nombre, string Tipo, string Genero, int Anio)
         {
