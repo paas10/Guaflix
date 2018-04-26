@@ -331,80 +331,138 @@ namespace Guaflix_1104017_1169317.Controllers
             return RedirectToAction("MiUsuario","Home");
         }
 
-
-        public ActionResult EliminarPelis()
-        {
-            List<Pelicula> ListadePeliculas = new List<Pelicula>();
-
-            foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
-            {
-                if (item != null)
-                {
-                    ListadePeliculas.Add(item);
-                }
-            }
-
-            foreach (var item in DataBase.Instance.ArboldeDocumentalesPorAño.ObtenerArbol())
-            {
-                if (item != null)
-                {
-                    ListadePeliculas.Add(item);
-                }
-            }
-
-            foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
-            {
-                if (item != null)
-                {
-                    ListadePeliculas.Add(item);
-                }
-            }
-
-
-            return View(ListadePeliculas);
-        }
-
         // GET: Pelicula/Delete/5
-        public ActionResult Delete(string Nombre, int Anio)
+        public ActionResult Delete(string URL, string Trailer, string Nombre, string Tipo, string Genero)
         {
-            List<Pelicula> Lista = new List<Pelicula>();
-            List<Pelicula> ListaFinal = new List<Pelicula>();
-
-            foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
-            {
-                Lista.Add(item);
-            }
-
-            foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
-            {
-                Lista.Add(item);
-            }
-
-            foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
-            {
-                Lista.Add(item);
-            }
-
             if (Nombre == null)
             {
-                return View(Lista);
+                List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
+
+                foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                return View(ListaTemporaldePeliculas);
+
             }
             else
             {
-                foreach (var item in Lista)
+                var Anio = 0;
+
+                if (Tipo == "Pelicula")
                 {
-                    if (item.Nombre != Nombre)
+                    foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
                     {
-                        if (item.AniodeLanzamiento != Anio)
+                        if (item != null)
                         {
-                            ListaFinal.Add(item);
+                            if (item.Nombre == Nombre && item.URL == URL)
+                            {
+                                Anio = item.AniodeLanzamiento;
+                            }
                         }
                     }
                 }
-                return View(ListaFinal);
+                else if (Tipo == "Documental")
+                {
+                    foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+                    {
+                        if (item != null)
+                        {
+                            if (item.Nombre == Nombre && item.URL == URL)
+                            {
+                                Anio = item.AniodeLanzamiento;
+                            }
+                        }
+                    }
+                }
+                else if (Tipo == "Serie")
+                {
+                    foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+                    {
+                        if (item != null)
+                        {
+                            if (item.Nombre == Nombre && item.URL == URL)
+                            {
+                                Anio = item.AniodeLanzamiento;
+                            }
+                        }
+
+                    }
+                }
+
+                Pelicula NuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);
+
+                if (NuevaPelicula.Tipo == "Pelicula")
+                {
+                    /* DataBase.Instance.ArboldePeliculasPorNombre.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldePeliculasPorGenero.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldePeliculasPorAño.Eliminar(NuevaPelicula);*/
+                }
+                else if (NuevaPelicula.Tipo == "Documental")
+                {
+                    /* DataBase.Instance.ArboldeDocumentalesPorNombre.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldeDocumentalesPorGenero.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldeDocumentalesPorAño.Eliminar(NuevaPelicula);*/
+                }
+                else if (NuevaPelicula.Tipo == "Serie")
+                {
+                    /*DataBase.Instance.ArboldeSeriesPorNombre.Eliminar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorGenero.Eliminar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorAño.Eliminar(NuevaPelicula);*/
+                }
+
+
+                List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
+
+                foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                return RedirectToAction("MisPeliculas", ListaTemporaldePeliculas);
             }
+
         }
-       
+
         // GET: Pelicula/Create
         public ActionResult Create()
         {

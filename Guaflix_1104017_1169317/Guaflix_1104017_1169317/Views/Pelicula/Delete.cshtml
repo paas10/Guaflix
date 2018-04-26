@@ -4,8 +4,9 @@
     ViewBag.Title = "Eliminar Peliculas";
 }
 
-<body style="background-image: url('/Content/pop.jpg'); background-size:cover;"></body>
-    <h2 style="color:lightskyblue">Eliminar Peliculas</h2>
+<body style="background-image: url('/Content/pop.jpg');">
+</body>
+<h2 style="color:lightskyblue">Eliminar Peliculas</h2>
 
 <div style="background-color:black; border-radius:8px; opacity:0.6">
     <table class="table" style="color:white" align="center">
@@ -41,10 +42,10 @@
                     @Html.DisplayFor(modelItem => item.Genero)
                 </td>
                 <td>
-                    @Html.ActionLink("Eliminar", "Delete", new { Nombre = item.Nombre, Anio = item.AniodeLanzamiento })
+                    @Html.ActionLink("Eliminar", "Delete", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })
                 </td>
             </tr>
         }
 
     </table>
-    </div>
+</div>

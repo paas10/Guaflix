@@ -241,6 +241,26 @@ namespace Guaflix_1104017_1169317.Controllers
             return View();
         }
 
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgetPassword(FormCollection collection)
+        {
+            foreach (var item in DataBase.Instance.ArboldeUsuarios.ObtenerArbol())
+            {
+                if(item.Nombre == collection["Nombre"] && item.Apellido == collection["Apellido"])
+                {
+                    item.Password = collection["Password"];
+                }
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         //Aca se hace el Ingreso por medio de Archivo de Texto, ya que el Boton de Result esta Linkeado.

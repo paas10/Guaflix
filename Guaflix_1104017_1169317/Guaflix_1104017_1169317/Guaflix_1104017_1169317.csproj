@@ -202,6 +202,7 @@
     <Content Include="Views\Pelicula\Delete.cshtml" />
     <Content Include="Views\Home\MiWatchList.cshtml" />
     <Content Include="Views\Pelicula\Create.cshtml" />
+    <Content Include="Views\Home\ForgetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
