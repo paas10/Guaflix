@@ -44,20 +44,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     case 8: ListaEnDisco = DataBase.Instance.ArboldeDocumentalesPorAño.ObtenerArbolEnDisco(); break;
                     case 9: ListaEnDisco = DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbolEnDisco(); break;
                     case 10: ListaEnDisco = DataBase.Instance.ArboldeUsuarios.ObtenerArbolEnDisco(); break;
-                    case 11:
-                        List<Usuario> ListaTemporaldeUsuarios = new List<Usuario>();
-                        ListaTemporaldeUsuarios = DataBase.Instance.ArboldeUsuarios.ObtenerArbol();
-
-                        foreach (var item in ListaTemporaldeUsuarios)
-                        {
-                            if (item.Logeado == true)
-                            {
-                                escritor = new StreamWriter(@"C:\" + item.Username + ".watchList");
-                            }
-                        }
-
-                        ListaEnDisco = DataBase.Instance.WatchListUsuario.ObtenerArbolEnDisco();
-                        break;
+                    default: break;
                 }
 
                 foreach (var linea in ListaEnDisco)
@@ -608,7 +595,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldePeliculasPorNombre.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldePeliculasPorAño.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldePeliculasPorGenero.Insertar(NuevaPelicula);
-                    ImprimirArboles(1, @"C:\Name.movietree");
+                    ImprimirArboles(1, @"C:\name.movietree");
                     ImprimirArboles(2, @"C:\year.movietree");
                     ImprimirArboles(3, @"C:\gender.movietree");
                 }
@@ -617,8 +604,8 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(NuevaPelicula);
-                    ImprimirArboles(7, @"C:\Name.documentarytree");
-                    ImprimirArboles(8, @"C:\year.documentarytree");
+                    ImprimirArboles(7, @"C:\name.documentarytree");
+                    ImprimirArboles(2, @"C:\year.documentarytree");
                     ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
                 else if(NuevaPelicula.Tipo == "Serie")
@@ -627,7 +614,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldeSeriesPorAño.Insertar(NuevaPelicula);
                     DataBase.Instance.ArboldeSeriesPorGenero.Insertar(NuevaPelicula);
                     ImprimirArboles(4, @"C:\name.showtree");
-                    ImprimirArboles(5, @"C:\year.showtree");
+                    ImprimirArboles(2, @"C:\year.showtree");
                     ImprimirArboles(6, @"C:\gender.showtree");
                 }
 

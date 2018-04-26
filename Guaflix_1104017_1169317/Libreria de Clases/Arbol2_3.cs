@@ -1589,7 +1589,7 @@ namespace Libreria_de_Clases
 
                 if (Aux.Hijos[2] != null)
                 {
-                    camino += "0->";
+                    camino += "2->";
                     InOrderEnDisco(Aux.Hijos[2], ref Elements, camino);
                 }
             }

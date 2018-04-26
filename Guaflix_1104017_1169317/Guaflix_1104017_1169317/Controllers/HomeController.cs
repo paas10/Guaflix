@@ -298,7 +298,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldePeliculasPorNombre.Insertar(item);
                     DataBase.Instance.ArboldePeliculasPorAño.Insertar(item);
                     //DataBase.Instance.ArboldePeliculasPorGenero.Insertar(item);
-                    PeliculaController.ImprimirArboles(1, @"C:\Name.movietree");
+                    PeliculaController.ImprimirArboles(1, @"C:\name.movietree");
                     PeliculaController.ImprimirArboles(2, @"C:\year.movietree");
                     PeliculaController.ImprimirArboles(3, @"C:\gender.movietree");
                 }
@@ -308,7 +308,7 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldeSeriesPorGenero.Insertar(item);
                     //DataBase.Instance.ArboldeSeriesPorAño.Insertar(item);
                     PeliculaController.ImprimirArboles(4, @"C:\name.showtree");
-                    PeliculaController.ImprimirArboles(5, @"C:\year.showtree");
+                    PeliculaController.ImprimirArboles(2, @"C:\year.showtree");
                     PeliculaController.ImprimirArboles(6, @"C:\gender.showtree");
                 }
                 else if (item.Tipo == "Documental")
@@ -316,8 +316,8 @@ namespace Guaflix_1104017_1169317.Controllers
                     DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(item);
                     DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(item);
                     //DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(item);
-                    PeliculaController.ImprimirArboles(7, @"C:\Name.documentarytree");
-                    PeliculaController.ImprimirArboles(8, @"C:\year.documentarytree");
+                    PeliculaController.ImprimirArboles(7, @"C:\name.documentarytree");
+                    PeliculaController.ImprimirArboles(2, @"C:\year.documentarytree");
                     PeliculaController.ImprimirArboles(9, @"C:\gender.documentarytree");
                 }
             }
