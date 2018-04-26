@@ -201,6 +201,7 @@
     <Content Include="Views\Pelicula\VerPelicula.cshtml" />
     <Content Include="Views\Pelicula\Delete.cshtml" />
     <Content Include="Views\Home\MiWatchList.cshtml" />
+    <Content Include="Views\Pelicula\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

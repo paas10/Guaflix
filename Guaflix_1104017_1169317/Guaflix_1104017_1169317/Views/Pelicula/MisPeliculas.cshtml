@@ -29,7 +29,12 @@
     <h1 style="color:deepskyblue">Nuevas Peliculas</h1>
     <div style="border: 2px solid black; border-radius:5px; height:400px; width:750px; background-color:black; opacity:0.9">
         <iframe width="750" height="375" src="@Url.Content("~/Content/Guaflix.mp4")" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <a align="left" href="@Url.Action("BuscarPelicula","Pelicula")">Buscar Pelicula</a>
+        <div align="center">
+                @Html.ActionLink("Buscar Pelicula", "BuscarPelicula", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
+
+                @Html.ActionLink("Crear Pelicula", "Create", "Pelicula", null, new { @class = "btn btn-primary btn-large" })
+            </div> 
+     
         <br />
     </div>
     <br />

@@ -417,9 +417,55 @@ namespace Guaflix_1104017_1169317.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                Pelicula NuevaPelicula = new Pelicula(collection["URL"],collection["Trailer"],collection["Nombre"],collection["Tipo"],Convert.ToInt32(collection["AniodeLanzamiento"]),collection["Genero"]);
 
-                return RedirectToAction("Index");
+                if(NuevaPelicula.Tipo == "Pelicula")
+                {
+                    DataBase.Instance.ArboldePeliculasPorNombre.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldePeliculasPorGenero.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldePeliculasPorAño.Insertar(NuevaPelicula);
+                }
+                else if(NuevaPelicula.Tipo == "Documental")
+                {
+                    DataBase.Instance.ArboldeDocumentalesPorNombre.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeDocumentalesPorGenero.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeDocumentalesPorAño.Insertar(NuevaPelicula);
+                }
+                else if(NuevaPelicula.Tipo == "Serie")
+                {
+                    DataBase.Instance.ArboldeSeriesPorNombre.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorGenero.Insertar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorAño.Insertar(NuevaPelicula);
+                }
+
+
+                List<Pelicula> ListaTemporaldePeliculas = new List<Pelicula>();
+
+                foreach (var item in DataBase.Instance.ArboldeSeriesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldeDocumentalesPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                foreach (var item in DataBase.Instance.ArboldePeliculasPorNombre.ObtenerArbol())
+                {
+                    if (item != null)
+                    {
+                        ListaTemporaldePeliculas.Add(item);
+                    }
+                }
+
+                return RedirectToAction("MisPeliculas", ListaTemporaldePeliculas);
             }
             catch
             {
