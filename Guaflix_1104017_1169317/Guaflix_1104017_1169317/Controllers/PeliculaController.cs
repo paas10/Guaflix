@@ -414,21 +414,21 @@ namespace Guaflix_1104017_1169317.Controllers
 
                 if (NuevaPelicula.Tipo == "Pelicula")
                 {
-                    /* DataBase.Instance.ArboldePeliculasPorNombre.Eliminar(NuevaPelicula);
-                     DataBase.Instance.ArboldePeliculasPorGenero.Eliminar(NuevaPelicula);
-                     DataBase.Instance.ArboldePeliculasPorAño.Eliminar(NuevaPelicula);*/
+                     DataBase.Instance.ArboldePeliculasPorNombre.Eliminar(NuevaPelicula);
+                     //DataBase.Instance.ArboldePeliculasPorGenero.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldePeliculasPorAño.Eliminar(NuevaPelicula);
                 }
                 else if (NuevaPelicula.Tipo == "Documental")
                 {
-                    /* DataBase.Instance.ArboldeDocumentalesPorNombre.Eliminar(NuevaPelicula);
-                     DataBase.Instance.ArboldeDocumentalesPorGenero.Eliminar(NuevaPelicula);
-                     DataBase.Instance.ArboldeDocumentalesPorAño.Eliminar(NuevaPelicula);*/
+                     DataBase.Instance.ArboldeDocumentalesPorNombre.Eliminar(NuevaPelicula);
+                     //DataBase.Instance.ArboldeDocumentalesPorGenero.Eliminar(NuevaPelicula);
+                     DataBase.Instance.ArboldeDocumentalesPorAño.Eliminar(NuevaPelicula);
                 }
                 else if (NuevaPelicula.Tipo == "Serie")
                 {
-                    /*DataBase.Instance.ArboldeSeriesPorNombre.Eliminar(NuevaPelicula);
-                    DataBase.Instance.ArboldeSeriesPorGenero.Eliminar(NuevaPelicula);
-                    DataBase.Instance.ArboldeSeriesPorAño.Eliminar(NuevaPelicula);*/
+                    DataBase.Instance.ArboldeSeriesPorNombre.Eliminar(NuevaPelicula);
+                    //DataBase.Instance.ArboldeSeriesPorGenero.Eliminar(NuevaPelicula);
+                    DataBase.Instance.ArboldeSeriesPorAño.Eliminar(NuevaPelicula);
                 }
 
 

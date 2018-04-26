@@ -1248,6 +1248,7 @@ namespace Libreria_de_Clases
         }
 
 
+
         public T Buscar(T valor)
         {
             return Buscar(Raiz, valor);
@@ -1298,7 +1299,55 @@ namespace Libreria_de_Clases
         }
 
 
-        public void Eliminar(ref Nodo2_3<T> nAuxiliar, T vEliminar)
+
+        public void Eliminar(T VEliminar)
+        {
+            Eliminar(ref Raiz, VEliminar);
+        }
+
+        private void Eliminar(ref Nodo2_3<T> nAuxiliar, T Valor)
+        {
+            if (nAuxiliar == null)
+            {
+                return;
+            }
+            // Si la siguiente condicion se cumple quiere decir que solo hay opción de hijo izquierdo o derecho.
+            else if (nAuxiliar.Elementos[1] == null)
+            {
+                // Se encontró
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    nAuxiliar.Elementos[0] = default(T);
+                // Como no se encontró me tengo que ir a los hijos
+                // Se debe dirigir a la izquierda
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                    Eliminar(ref nAuxiliar.Hijos[0], Valor);
+                // Se debe dirigir a la derecha
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1)
+                    Eliminar(ref nAuxiliar.Hijos[2], Valor);
+            }
+            // Si la siguiente condicion se cumple quiere decir que hay opción hijo izquierdo, derecho o central.
+            else if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
+            {
+                // Se encontró en la llave izquierda
+                if (nAuxiliar.Elementos[0].CompareTo(Valor) == 0)
+                    nAuxiliar.Elementos[0] = default(T);
+                // Se encontró en la llave derecha
+                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == 0)
+                    nAuxiliar.Elementos[1] = default(T);
+                // Como no se encontró me tengo que ir a los hijos
+                // Se debe dirigir a la izquierda
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == 1)
+                    Eliminar(ref nAuxiliar.Hijos[0], Valor);
+                // Se debe dirigir al centro
+                else if (nAuxiliar.Elementos[0].CompareTo(Valor) == -1 && nAuxiliar.Elementos[1].CompareTo(Valor) == 1)
+                    Eliminar(ref nAuxiliar.Hijos[1], Valor);
+                // Se debe dirigir a la derecha
+                else if (nAuxiliar.Elementos[1].CompareTo(Valor) == -1)
+                    Eliminar(ref nAuxiliar.Hijos[2], Valor);
+            }
+        }
+
+        public void Elimina(ref Nodo2_3<T> nAuxiliar, T vEliminar)
         {
             if (nAuxiliar == null)
                 return;
@@ -1306,48 +1355,117 @@ namespace Libreria_de_Clases
             // Si el valor a eliminar está en una hoja solo lo quito
             else if (nAuxiliar.EsHoja == true)
             {
+                // Mira cual eliminar y reacomoda las llaves de ser necesario
                 if (nAuxiliar.Elementos[0] != null && nAuxiliar.Elementos[1] != null)
                 {
-                    if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 0)
+                    if (comparador(nAuxiliar.Elementos[0], vEliminar) == 0)
+                    //if (nAuxiliar.Elementos[0].CompareTo(vEliminar) == 0)
                     {
                         nAuxiliar.Elementos[0] = default(T);
                         nAuxiliar.Elementos[0] = nAuxiliar.Elementos[1];
                     }
-                    else if (nAuxiliar.Elementos[1].CompareTo(vEliminar) == 0)
+                    else if (comparador(nAuxiliar.Elementos[1], vEliminar) == 0)
+                    //else if (nAuxiliar.Elementos[1].CompareTo(vEliminar) == 0)
                     {
                         nAuxiliar.Elementos[1] = default(T);
                     }
                 }
-                else if (nAuxiliar.Elementos[1] == null)
+                // Solo hay hijos izquierdo y derecho
+                else if (nAuxiliar.Padre.Hijos[1] == null)
                 {
-                    if (nAuxiliar.PosicionHijo == "Hijo Izquierdo")
+                    // Habrá underflow
+                    if (nAuxiliar.Elementos[1] == null && comparador(nAuxiliar.Elementos[0], vEliminar) == 0)
                     {
-                        if (nAuxiliar.Padre.Hijos[2].Elementos[0] != null && nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                        if (nAuxiliar.PosicionHijo == "Hijo Izquierdo")
                         {
-                            if (nAuxiliar.Padre.Elementos[1] == null)
+                            // Le presta al hermano
+                            if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
                             {
                                 nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
                                 nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
                                 nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                                nAuxiliar.Padre.Hijos[2].Elementos[1] = default(T);
                             }
+                            // qeuda underflow y baja el papa
                             else
                             {
-                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
-                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Elementos[1];
-                                nAuxiliar.Padre.Elementos[1] = nAuxiliar.Padre.Hijos[2].Elementos[0];
-                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+
                             }
-
                         }
-                        else if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                        if (nAuxiliar.PosicionHijo == "Hijo Derecho")
                         {
+                            // Le presta al hermano
+                            if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                                nAuxiliar.Padre.Hijos[2].Elementos[1] = default(T);
+                            }
+                            // qeuda underflow y baja el papa
+                            else
+                            {
 
+                            }
                         }
+                    }
 
+                }
+                else
+                {
+                    // Habrá underflow
+                    if (nAuxiliar.Elementos[1] == null && comparador(nAuxiliar.Elementos[0], vEliminar) == 0)
+                    {
+                        if (nAuxiliar.PosicionHijo == "Hijo Izquierdo")
+                        {
+                            // Le presta al hermano
+                            if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                                nAuxiliar.Padre.Hijos[2].Elementos[1] = default(T);
+                            }
+                            // qeuda underflow y baja el papa
+                            else
+                            {
 
+                            }
+                        }
+                        else if (nAuxiliar.PosicionHijo == "Hijo Central")
+                        {
+                            // Le presta al hermano
+                            if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                                nAuxiliar.Padre.Hijos[2].Elementos[1] = default(T);
+                            }
+                            // qeuda underflow y baja el papa
+                            else
+                            {
+
+                            }
+                        }
+                        else if (nAuxiliar.PosicionHijo == "Hijo Derecho")
+                        {
+                            // Le presta al hermano
+                            if (nAuxiliar.Padre.Hijos[2].Elementos[1] != null)
+                            {
+                                nAuxiliar.Elementos[0] = nAuxiliar.Padre.Elementos[0];
+                                nAuxiliar.Padre.Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[0];
+                                nAuxiliar.Padre.Hijos[2].Elementos[0] = nAuxiliar.Padre.Hijos[2].Elementos[1];
+                                nAuxiliar.Padre.Hijos[2].Elementos[1] = default(T);
+                            }
+                            // qeuda underflow y baja el papa
+                            else
+                            {
+
+                            }
+                        }
                     }
                 }
-
             }
             // Si la siguiente condicion se cumple quiere decir que solo hay opción de hijo izquierdo o derecho.
             else if (nAuxiliar.Elementos[1] == null)
@@ -1408,9 +1526,6 @@ namespace Libreria_de_Clases
 
 
 
-
-
-
         public List<T> ObtenerArbol()
         {
             List<T> Elemetnos = new List<T>();
@@ -1426,6 +1541,7 @@ namespace Libreria_de_Clases
                 if (Aux.Hijos[0] != null)
                     InOrder(Aux.Hijos[0], ref Elements);
 
+                if (Aux.Elementos[0] != null)
                 Elements.Add(Aux.Elementos[0]);
 
                 if (Aux.Hijos[1] != null)
@@ -1632,30 +1748,5 @@ namespace Libreria_de_Clases
 
         }
 
-        /*
-        private void AsignarCodPK(ref Nodo2_3<T> Aux, int cod)
-        {
-            if (Aux.EsHoja == false)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    if (Aux.Hijos[i] != null)
-                    {
-                        Aux.Elementos[i].
-                        CorregirPadres(ref Aux.Hijos[i]);
-                    }
-                }
-
-                for (int i = 0; i < 3; i++)
-                {
-                    if (Aux.Hijos[i] != null)
-                    {
-                        Aux.Elementos[]
-                        CorregirPadres(ref Aux.Hijos[i]);
-                    }
-                }
-            }
-        }
-        */
     }
 }
