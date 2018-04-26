@@ -89,7 +89,6 @@ namespace Guaflix_1104017_1169317.Controllers
         }
 
         //Se va a una Pelicula especifica para ver sus especificaciones
-        [ValidateInput(false)]
         public ActionResult AgregarWatchlist(string URL, string Trailer, string Nombre, string Tipo, string Genero, int Anio)
         {
             Pelicula nuevaPelicula = new Pelicula(URL, Trailer, Nombre, Tipo, Anio, Genero);

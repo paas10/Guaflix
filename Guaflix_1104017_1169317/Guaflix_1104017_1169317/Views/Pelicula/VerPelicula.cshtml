@@ -39,7 +39,7 @@
     {<br />
         <h2 style="color:white">@Html.DisplayFor(modelItem => item.Nombre)</h2>
         <div style="padding-left:10px;" class="wrapper">
-            <p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "VerPelicula", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })</p>
+            <p style="float:right">@Html.ActionLink("Agregar a Mi WatchList", "AgregarWatchlist", new { URL = item.URL, Trailer = item.Trailer, Nombre = item.Nombre, Tipo = item.Tipo, Genero = item.Genero, Anio = item.AniodeLanzamiento })</p>
             <br />
             <br />
             <img src="@Url.Content(item.URL)" style="width:200px; height:300px; border: 1px solid white; border-radius:5px; float:left; margin: 10px 10px 0 0;" />
